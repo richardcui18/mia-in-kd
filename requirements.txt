@@ -1,0 +1,11 @@
+tqdm
+torch
+numpy
+transformers
+openai
+accelerate
+matplotlib
+scipy
+datasets
+scikit-learn
+seaborn
