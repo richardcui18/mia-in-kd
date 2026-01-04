@@ -1,3 +1,4 @@
+# This implementation is adapted from ReCaLL: https://github.com/ruoyuxie/recall
 import json
 import os
 import random
@@ -19,11 +20,9 @@ def sweep(score, labels):
     """
     Compute a ROC curve and then return the FPR, TPR, AUC, ACC, TPR@10%FPR, and TPR@20%FPR.
     """
-
     fpr, tpr, _ = roc_curve(labels, score)
     acc = np.max(1 - (fpr + (1 - tpr)) / 2)
     auc_roc = auc(fpr, tpr)
-
     return fpr, tpr, auc_roc, acc
 
 
@@ -55,13 +54,13 @@ def fig_fpr_tpr(all_output, result_path):
     answers = []
     metric2predictions = defaultdict(list)
     for ex in all_output:
-        answers.append(int(ex["label"]))
-        for metric in ex["pred_teacher"].keys():
+        answers.append(ex["label"])
+        for metric in ex["pred"].keys():
             if ("raw" in metric) and ("clf" not in metric):
                 continue
-            metric2predictions[metric].append(ex["pred_teacher"][metric])
+            metric2predictions[metric].append(ex["pred"][metric])
             # if the metric is all nan, then just append 0 to it to avoid error
-            if np.isnan(ex["pred_teacher"][metric]).all():
+            if np.isnan(ex["pred"][metric]).all():
                 metric2predictions[metric][-1] = 0
 
     plt.figure(figsize=(4, 3))
