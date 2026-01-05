@@ -15,16 +15,19 @@ You can run MIA for a specific model using the following command:
 
 ```bash
 cd src
-python run.py \
+python run_mia.py \
     --target_model <TARGET_MODEL> \
     --output_dir <OUTPUT_PATH> \
-    --dataset <DATASET>
+    --dataset <DATASET> \
+    --sub_dataset <SUB_DATASET> \
+    --num_shots <NUM_SHOTS>
 ```
 
 For example, to run MIA on Pythia using ArXiv dataset, you can use:
 ```bash
-python run.py \
+python run_mia.py \
     --target_model "EleutherAI/pythia-160m" \
+    --ref_model "EleutherAI/pythia-70m" \
     --output_dir ./out \
     --dataset "arxiv"
 ```
@@ -39,3 +42,21 @@ python analysis.py \
     --student_model_names <STUDENT_MODEL_NAMES> \
     --student_model_testing_results_paths <STUDENT_MODEL_TESTING_PATHS>
 ```
+
+## Implementing Bottleneck and NoNorm
+To distill student models with bottleneck and NoNorm implementations, you can use the following command:
+```bash
+cd src
+python distill.py \
+    --teacher-name <TEACHER> \
+    --student-name <STUDENT> \
+    --dataset <DATASET> \
+    --save_path <SAVE_PATH> \
+    --mode <MODE> \
+    --bottleneck-dim <BOTTLENECK-DIM> \
+    --batch-size <BATCH-SIZE> \
+    --epochs <EPOCHS> \
+    --lr <LEARNING_RATE>
+```
+
+`mode` can be chosen from "bottleneck", "nonorm", "none", and "all", where "all" is implementing both "bottleneck" and "nonorm".
