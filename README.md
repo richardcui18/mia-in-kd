@@ -1,9 +1,10 @@
 # On Membership Inference Attacks in Knowledge Distillation
 
+[![PDF](https://img.shields.io/badge/arXiv-2505.11837-b31b1b.svg)](https://arxiv.org/abs/2505.11837)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 ## Overview
-This is the official repository for On Membership Inference Attacks in Knowledge Distillation.
+This is the official repository for [On Membership Inference Attacks in Knowledge Distillation](https://arxiv.org/pdf/2505.11837).
 
 ## Installation
    ```bash
@@ -46,7 +47,6 @@ python analysis.py \
 ## Implementing Bottleneck and NoNorm
 To distill student models with bottleneck and NoNorm implementations, you can use the following command:
 ```bash
-cd src
 python distill.py \
     --teacher-name <TEACHER> \
     --student-name <STUDENT> \
